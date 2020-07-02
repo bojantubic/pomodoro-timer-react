@@ -6,8 +6,10 @@ function App() {
     document.querySelector("body").classList.add("work");
   }, []);
 
-  const timeWork = 25 * 60;
-  const timeBreak = 5 * 60;
+  // const timeWork = 25 * 60;
+  // const timeBreak = 5 * 60;
+  const timeWork = 2;
+  const timeBreak = 10;
   const bodyClass = document.querySelector("body").classList;
 
   const [title, setTitle] = useState("start the timer");
@@ -67,6 +69,7 @@ function App() {
   const stopTimer = () => {
     clearInterval(intervalRef.current);
     intervalRef.current = null;
+    setTitle(() => "start the timer");
     setTime(timeWork);
     setIsWorkTime(true);
     bodyClass.remove("break");
@@ -83,12 +86,16 @@ function App() {
 
   return (
     <main>
-      <h1>{title}</h1>
+      <div>
+        <h1>{title}</h1>
+      </div>
+
       <time>
         <span>{minutes}</span>
         <span>:</span>
         <span>{seconds}</span>
       </time>
+
       <section>
         <button onClick={isWorkTime ? startTimer : startBreak}>start</button>
         <button onClick={pauseTimer}>pause</button>
