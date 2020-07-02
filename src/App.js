@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import Gear from "./Gear";
 import "./App.css";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
   const [title, setTitle] = useState("start the timer");
   const [isWorkTime, setIsWorkTime] = useState(true);
   const [time, setTime] = useState(timeWork);
+  const [totalSessions, setTotalSessions] = useState(0);
   const intervalRef = useRef(null);
 
   const padStart = (time) => time.toString().padStart(2, 0);
@@ -33,6 +35,7 @@ function App() {
         setTime(timeBreak);
         setTitle(() => "have a break");
         setIsWorkTime(false);
+        setTotalSessions((prev) => prev + 1);
         bodyClass.remove("work");
         bodyClass.add("break");
         return 0;
@@ -76,7 +79,7 @@ function App() {
     bodyClass.add("work");
   };
 
-  const buttons = document.querySelectorAll("button");
+  const buttons = document.querySelectorAll("footer button");
   buttons.forEach((button) => {
     button.addEventListener("click", function () {
       buttons.forEach((btn) => btn.classList.remove("active"));
@@ -86,9 +89,13 @@ function App() {
 
   return (
     <main>
-      <div>
+      <header>
+        <span>{totalSessions}</span>
         <h1>{title}</h1>
-      </div>
+        <button>
+          <Gear />
+        </button>
+      </header>
 
       <time>
         <span>{minutes}</span>
@@ -96,11 +103,11 @@ function App() {
         <span>{seconds}</span>
       </time>
 
-      <section>
+      <footer>
         <button onClick={isWorkTime ? startTimer : startBreak}>start</button>
         <button onClick={pauseTimer}>pause</button>
         <button onClick={stopTimer}>stop</button>
-      </section>
+      </footer>
     </main>
   );
 }
