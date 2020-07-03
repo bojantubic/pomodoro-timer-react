@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Gear, Checked, Unchecked } from "./SVGs";
-import "./App.css";
+import Header from "./Header";
+import Time from "./Time";
+import Settings from "./Settings";
+import Footer from "./Footer";
+import "../App.css";
 
 function App() {
   useEffect(() => {
@@ -28,9 +31,10 @@ function App() {
     setTitle(() => "work time");
     bodyClass.remove("break");
     bodyClass.add("work");
+    setTime((prevTime) => prevTime - 1);
     intervalRef.current = setInterval(() => {
-      setTime((timeLeft) => {
-        if (timeLeft >= 1) return timeLeft - 1;
+      setTime((prevTime) => {
+        if (prevTime >= 1) return prevTime - 1;
         stopTimer();
 
         setTime(timeBreak);
@@ -51,9 +55,10 @@ function App() {
     setTitle(() => "break time");
     bodyClass.remove("work");
     bodyClass.add("break");
+    setTime((prevTime) => prevTime - 1);
     intervalRef.current = setInterval(() => {
-      setTime((timeLeft) => {
-        if (timeLeft >= 1) return timeLeft - 1;
+      setTime((prevTime) => {
+        if (prevTime >= 1) return prevTime - 1;
         stopTimer();
 
         setTime(timeWork);
@@ -122,75 +127,20 @@ function App() {
 
   return (
     <main>
-      <header>
-        <span>{totalSessions}</span>
-        <h1>{title}</h1>
-        <button onClick={() => handleSettings()}>
-          <Gear />
-        </button>
-      </header>
+      <Header totalSessions={totalSessions} title={title} handleSettings={handleSettings} />
 
       {!activeSettings ? (
-        <time>
-          <span>{minutes}</span>
-          <span>:</span>
-          <span>{seconds}</span>
-        </time>
+        <Time minutes={minutes} seconds={seconds} />
       ) : (
-        <form className="form">
-          <div className="form__block">
-            <div className="form__block--left">
-              <label className="form__label" htmlFor="work">
-                work
-              </label>
-            </div>
-            <div className="form__block--right">
-              <input
-                value={timeWork}
-                onChange={handleTimeWork}
-                type="range"
-                id="work"
-                name="work"
-                min="900"
-                max="3600"
-                step="60"
-              />
-              <small>{Math.round(timeWork / 60)}</small>
-            </div>
-          </div>
-
-          <div className="form__block">
-            <div className="form__block--left">
-              <label className="form__label" htmlFor="break">
-                break
-              </label>
-            </div>
-            <div className="form__block--right">
-              <input
-                value={timeBreak}
-                onChange={handleTimeBreak}
-                type="range"
-                id="break"
-                name="break"
-                min="180"
-                max="1800"
-                step="60"
-              />
-              <small>{Math.round(timeBreak / 60)}</small>
-            </div>
-          </div>
-
-          <div className="form__block">
-            <div className="form__block--left">
-              <label className="form__label" htmlFor="">
-                sound
-              </label>
-            </div>
-            <div onClick={handleSound} className="form__block--right">
-              {soundOn ? <Checked /> : <Unchecked />}
-            </div>
-          </div>
-        </form>
+        <Settings
+          className="form"
+          timeWork={timeWork}
+          handleTimeWork={handleTimeWork}
+          timeBreak={timeBreak}
+          handleTimeBreak={handleTimeBreak}
+          handleSound={handleSound}
+          soundOn={soundOn}
+        />
       )}
 
       {activeSettings ? (
@@ -198,11 +148,13 @@ function App() {
           confirm
         </button>
       ) : (
-        <footer>
-          <button onClick={isWorkTime ? startTimer : startBreak}>start</button>
-          <button onClick={pauseTimer}>pause</button>
-          <button onClick={stopTimer}>stop</button>
-        </footer>
+        <Footer
+          isWorkTime={isWorkTime}
+          startTimer={startTimer}
+          startBreak={startBreak}
+          pauseTimer={pauseTimer}
+          stopTimer={stopTimer}
+        />
       )}
     </main>
   );
