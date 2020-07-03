@@ -190,17 +190,20 @@ function App() {
               {soundOn ? <Checked /> : <Unchecked />}
             </div>
           </div>
-          <button onClick={handleSettingsButton} className="form__button">
-            confirm
-          </button>
         </form>
       )}
 
-      <footer>
-        <button onClick={isWorkTime ? startTimer : startBreak}>start</button>
-        <button onClick={pauseTimer}>pause</button>
-        <button onClick={stopTimer}>stop</button>
-      </footer>
+      {activeSettings ? (
+        <button onClick={handleSettingsButton} className="form__button">
+          confirm
+        </button>
+      ) : (
+        <footer>
+          <button onClick={isWorkTime ? startTimer : startBreak}>start</button>
+          <button onClick={pauseTimer}>pause</button>
+          <button onClick={stopTimer}>stop</button>
+        </footer>
+      )}
     </main>
   );
 }
