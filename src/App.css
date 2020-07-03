@@ -5,7 +5,7 @@
   --yellow: #f9c74f;
   --blue: #577590;
 
-  --transition: all 0.3s ease-out;
+  --transition: all 0.2s ease-out;
 }
 
 .work {
@@ -37,20 +37,26 @@
 body {
   background-color: var(--color-primary);
   height: 100vh;
-  width: 100%;
-  transition: var(--transition);
+  width: 100vw;
+  transition: background-color 0.2s ease-out;
+
+  border-left: 1px solid var(--color-secondary);
+  border-right: 1px solid var(--color-secondary);
 
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+@media only screen and (max-width: 300px) {
+  body {
+    width: 300px;
+  }
+}
+
 main {
   height: 100vh;
   width: 100vw;
-
-  border-left: 1px solid var(--color-secondary);
-  border-right: 1px solid var(--color-secondary);
 
   display: flex;
   justify-content: center;
@@ -179,4 +185,124 @@ footer button:hover,
 .active {
   color: var(--color-primary);
   background-color: var(--color-secondary);
+}
+
+/* SETTINGS */
+
+.form {
+  width: 33.33%;
+  height: 75%;
+  border: 1px solid var(--color-secondary);
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media only screen and (max-width: 1000px) {
+  .form {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .form {
+    border: 0;
+  }
+}
+
+.form__block {
+  margin: 30px;
+  width: 90%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form__block:first-child {
+  margin-top: 60px;
+}
+
+.form__block--left {
+  text-align: right;
+  flex: 1;
+}
+
+@media only screen and (max-width: 600px) {
+  .form__block--left {
+    margin-left: -40px;
+  }
+}
+
+.form__block--right {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex: 3;
+}
+
+@media only screen and (max-width: 600px) {
+  .form__block--right {
+    flex: 1.8;
+  }
+}
+
+.form__label {
+  color: var(--color-secondary);
+  margin-right: 30px;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 80%;
+  height: 1px;
+  margin-right: 30px;
+
+  background: transparent;
+  background-color: var(--color-secondary);
+  outline: 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 15px;
+  width: 15px;
+  border: 0;
+  background: var(--color-secondary);
+  cursor: pointer;
+}
+
+.form small {
+  color: var(--color-secondary);
+  margin: 0;
+}
+
+.form__button {
+  position: absolute;
+  bottom: 20px;
+  border: 0;
+  outline: 0;
+  padding: 15px 40px;
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (max-width: 1000px) {
+  .form__button {
+    width: 33.33%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .form__button {
+    width: 33.33%;
+    bottom: 0;
+  }
 }
