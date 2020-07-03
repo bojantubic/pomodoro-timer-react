@@ -1,0 +1,182 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap");
+
+:root {
+  --red: #f94144;
+  --yellow: #f9c74f;
+  --blue: #577590;
+
+  --transition: all 0.3s ease-out;
+}
+
+.work {
+  --color-primary: var(--red);
+  --color-secondary: var(--yellow);
+}
+
+.break {
+  --color-primary: var(--blue);
+  --color-secondary: var(--yellow);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Orbitron", sans-serif;
+  text-align: center;
+
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body {
+  background-color: var(--color-primary);
+  height: 100vh;
+  width: 100%;
+  transition: var(--transition);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  height: 100vh;
+  width: 100%;
+
+  border-left: 1px solid var(--color-secondary);
+  border-right: 1px solid var(--color-secondary);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header {
+  position: absolute;
+  top: 0;
+  padding: 0;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  justify-content: center;
+}
+
+header span,
+header button {
+  position: absolute;
+  height: 60px;
+  padding: 20px;
+  font-weight: 700;
+  font-size: 20px;
+  border: 0;
+  outline: 0;
+  color: var(--color-secondary);
+  background-color: transparent;
+  transition: var(--transition);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (max-width: 600px) {
+  header span,
+  header button {
+    font-size: 20px;
+    font-weight: 400;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  header span,
+  header button {
+    height: 46px;
+  }
+}
+
+header span {
+  left: 0;
+  border-right: 1px solid var(--color-secondary);
+}
+
+header button {
+  right: 0;
+  border-left: 1px solid var(--color-secondary);
+  fill: var(--color-secondary);
+  cursor: pointer;
+}
+
+header button:hover {
+  color: var(--color-primary);
+  fill: var(--color-primary);
+  background-color: var(--color-secondary);
+}
+
+h1 {
+  color: var(--color-secondary);
+  position: absolute;
+  top: 0;
+  width: 100%;
+  border: 1px solid var(--color-secondary);
+  padding: 10px;
+}
+
+@media only screen and (max-width: 400px) {
+  h1 {
+    font-size: 20px;
+  }
+}
+
+time {
+  color: var(--color-secondary);
+  font-size: 150px;
+  font-weight: 700;
+}
+
+@media only screen and (max-width: 600px) {
+  time {
+    font-size: 100px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  time {
+    font-size: 80px;
+  }
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  padding: 0;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+}
+
+footer button {
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  border: 1px solid var(--color-secondary);
+  color: var(--color-secondary);
+  font-size: 20px;
+  padding: 10px 20px;
+  outline: 0;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+footer button:hover,
+.active {
+  color: var(--color-primary);
+  background-color: var(--color-secondary);
+}
