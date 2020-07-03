@@ -10,8 +10,8 @@ function App() {
   const bodyClass = document.querySelector("body").classList;
 
   const [title, setTitle] = useState("start the timer");
-  const [timeWork, setTimeWork] = useState(1500);
-  const [timeBreak, setTimeBreak] = useState(300);
+  const [timeWork, setTimeWork] = useState(3);
+  const [timeBreak, setTimeBreak] = useState(3);
   const [isWorkTime, setIsWorkTime] = useState(true);
   const [soundOn, setSoundOn] = useState(false);
   const [time, setTime] = useState(timeWork);
