@@ -3,6 +3,7 @@ import Header from "./Header";
 import Time from "./Time";
 import Settings from "./Settings";
 import Footer from "./Footer";
+import sound from "../sound.mp3";
 import "../App.css";
 
 function App() {
@@ -26,8 +27,14 @@ function App() {
   const minutes = padStart(Math.floor(time / 60));
   const seconds = padStart(time - minutes * 60);
 
+  const playSound = () => {
+    const audio = new Audio(sound);
+    soundOn && audio.play();
+  };
+
   const startTimer = () => {
     if (intervalRef.current !== null) return;
+    playSound();
     setTitle(() => "work time");
     bodyClass.remove("break");
     bodyClass.add("work");
@@ -45,6 +52,7 @@ function App() {
 
         bodyClass.remove("work");
         bodyClass.add("break");
+        playSound();
         return 0;
       });
     }, 1000);
@@ -68,6 +76,7 @@ function App() {
 
         bodyClass.remove("break");
         bodyClass.add("work");
+        playSound();
         return 0;
       });
     }, 1000);
