@@ -34,7 +34,6 @@ function App() {
 
   const startTimer = () => {
     if (intervalRef.current !== null) return;
-    playSound();
     setTitle(() => "work time");
     bodyClass.remove("break");
     bodyClass.add("work");
